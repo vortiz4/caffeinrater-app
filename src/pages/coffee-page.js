@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import CoffeeDrinks from "../components/coffee-drinks";
 
 function CoffeePage() {
 	return (
@@ -7,6 +8,7 @@ function CoffeePage() {
 			<Helmet>
 				<title>Coffee Drinks</title>
 			</Helmet>
+			<CoffeeDrinks />
 		</main>
 	);
 }

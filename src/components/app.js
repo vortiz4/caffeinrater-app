@@ -11,12 +11,14 @@ function App() {
 		<BrowserRouter>
 			<Nav />
 			<Switch>
-				<Route path="/" exact>
-					<CoffeePage />
-				</Route>
+			<Route path="/" exact>
+				<CoffeePage />
+			</Route>
 			</Switch>
 		</BrowserRouter>
 	);
 }
 
 export default App;
+
+// loadSampleData();
