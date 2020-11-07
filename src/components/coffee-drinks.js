@@ -27,7 +27,7 @@ function CoffeeDrinks() {
 
 	return (
 		<div className="coffee-container">
-			<h1>Coffee Drinks</h1>
+			<h1>CaffeinRater</h1>
 			{isLoading && (
 				<LoadingSpinner
 					size="50px"

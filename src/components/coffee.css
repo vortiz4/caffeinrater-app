@@ -59,3 +59,8 @@
 .coffee__review {
 	color: blueviolet;
 }
+
+.coffee__tags {
+	color: white;
+	background-color: black;
+}

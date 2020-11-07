@@ -6,7 +6,7 @@ function CoffeePage() {
 	return (
 		<main>
 			<Helmet>
-				<title>Coffee Drinks</title>
+				<title>CaffeinRater</title>
 			</Helmet>
 			<CoffeeDrinks />
 		</main>
