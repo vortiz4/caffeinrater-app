@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-// import "./add-coffee.css";
+import "./add-coffee.css";
 import CoffeeForm from "./coffee-form";
-import { coffeeCollection } from "../data/firebase";
+import { coffeeCollection, firebase } from "../data/firebase";
 
 function AddCoffee() {
 	const [isSaving, setIsSaving] = useState(false);
 	const [formMessage, setFormMessage] = useState("");
 
-	const onCoffeeSumbit = async (title, rating, shopName, review, datePurchased, tags) => {
+	const onCoffeeSumbit = async (title, rating, shopName, review, tags) => {
 		setIsSaving(true);
 		setFormMessage("");
 
@@ -16,9 +16,9 @@ function AddCoffee() {
 				title,
 				rating,
 				shopName,
-				datePurchased,
 				review,
-				tags
+				tags,
+				datePurchased: firebase.firestore.Timestamp.now(),
 			});
 			setFormMessage("Saved successfully!");
 			console.log("Saved!");

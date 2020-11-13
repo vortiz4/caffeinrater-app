@@ -5,4 +5,4 @@ import App from "./components/app";
 // import loadSampleData from "./data/load-sample-data";
 import "./index.css";
 
-ReactDOM.render(<App></App>, document.querySelector("#root"));
+ReactDOM.render(<App />, document.getElementById("root"));

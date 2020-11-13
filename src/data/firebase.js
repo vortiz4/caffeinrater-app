@@ -17,4 +17,4 @@ const db = firebase.firestore();
 const coffeeCollection = db.collection("coffee");
 
 export default db;
-export { coffeeCollection };
+export { coffeeCollection, firebase };

@@ -1,5 +1,5 @@
 import React from "react";
-// import "./error-message.css";
+import "./error-message.css";
 
 function ErrorMessage(props) {
 	const { children, displayAsCard = false, className, ...otherProps } = props;
