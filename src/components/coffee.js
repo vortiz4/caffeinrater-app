@@ -28,18 +28,9 @@ function Coffee(props) {
     }
   };
 
-  //   const getDate = async () => {
-  //     try {
-  //       const dateRef = coffeeCollection.doc(datePurchased);
-  //       await dateRef.get();
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //     getDate();
-  //   };
   const date = datePurchased.toDate();
   const dateString = date.toLocaleDateString();
-  console.log(dateString);
+
   return (
     <div className="coffee">
       <div className="coffee__contents">

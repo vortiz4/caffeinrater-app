@@ -25,14 +25,6 @@ function CoffeeDrinks() {
 		return unsubscribe;
 	}, []);
 
-	// db.collection("coffeeCollection")
-	// 	.get()
-	// 	.then(function (querySnapshot) {
-	// 		querySnapshot.forEach(function (doc) {
-	// 			console.log(doc.datePurchased, " => ", doc.data());
-	// 		});
-	// 	});
-
 	return (
 		<div className="coffee-container">
 			<h1>CaffeinRater</h1>
