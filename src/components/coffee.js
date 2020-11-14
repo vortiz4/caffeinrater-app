@@ -36,10 +36,10 @@ function Coffee(props) {
       <div className="coffee__contents">
         <div className="coffee__title">{title}</div>
         <div className="coffee__rating">{ratingString}</div>
-        <div className="coffee__review">From: {shopName}</div>
-        <div className="coffee__review">Date: {dateString}</div>
-        <div className="coffee__review">Review: {review ? review : "No Review Saved"}</div>
-        <div className="coffee__review">Tags: {tags ? tags.join(", ") : "No tags Saved"}</div>
+        <div className="coffee__copy">From: {shopName}</div>
+        <div className="coffee__copy">Date: {dateString}</div>
+        <div className="coffee__copy">Review: {review ? review : "No Review Saved"}</div>
+        <div className="coffee__copy">Tags: {tags ? tags.join(", ") : "No tags Saved"}</div>
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       </div>
       <div>
