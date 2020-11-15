@@ -2,7 +2,7 @@
 
 This web application will let the participant to enter their recent coffee drink they've ordered. This acts as a mini coffee journal that the participant can go back and see where and when they ordered their previous coffee orders. This is done after they had their coffee so they can refer back to that data later on.
 
-![JotIt Wireframe](src/images/plan_writeup_update.jpg)
+![Schematics](src/images/plan_writeup_update.jpg)
 
 > This is the schematics for this project planning
 
