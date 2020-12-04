@@ -8,16 +8,19 @@ function useAllCoffee() {
 
   useEffect(() => {
     setIsLoading(true);
+
     const onNext = (snapshot) => {
       setIsLoading(false);
       const docs = snapshot.docs;
       setCoffee(docs);
     };
+
     const onError = (error) => {
       setIsLoading(false);
       setErrorMessage("There was a problem saving your coffee drink please try again.");
       console.error(error);
     };
+
     const unsubscribe = coffeeCollection.onSnapshot(onNext, onError);
 
     return unsubscribe;
