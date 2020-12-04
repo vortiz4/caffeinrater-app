@@ -7,9 +7,9 @@ function useCoffee(id) {
   const [coffeeData, setCoffeeData] = useState(null);
 
   useEffect(() => {
-    // Retrival and error
     async function getCoffee() {
       setIsLoading(true);
+      
       try {
         const coffeeSnapshot = await coffeeCollection.doc(id).get();
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { coffeeCollection } from "../data/firebase";
 import useCoffee from "../hooks/use-coffee";
 import ErrorMessage from "./error-message";
