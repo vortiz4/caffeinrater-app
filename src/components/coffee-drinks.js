@@ -1,29 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import LoadingSpinner from "./loading-spinner";
 import ErrorMessage from "./error-message";
-import { coffeeCollection } from "../data/firebase";
+import useAllCoffee from "../hooks/use-all-coffee";
 import Coffee from "./coffee";
 import "./coffee-drinks.css";
 
 function CoffeeDrinks() {
-  const [coffee, setCoffee] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
-    setIsLoading(true);
-    const onNext = (snapshot) => {
-      setIsLoading(false);
-      const docs = snapshot.docs;
-      setCoffee(docs);
-    };
-    const onError = (error) => {
-      setErrorMessage("There was a problem saving your coffee drink please try again.");
-      console.error(error);
-    };
-    const unsubscribe = coffeeCollection.onSnapshot(onNext, onError);
-    return unsubscribe;
-  }, []);
+  const [coffee, isLoading, errorMessage] = useAllCoffee();
 
   return (
     <div className="coffee-container">

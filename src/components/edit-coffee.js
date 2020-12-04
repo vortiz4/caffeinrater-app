@@ -1,41 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { coffeeCollection } from "../data/firebase";
-import "./edit-coffee.css";
+import useCoffee from "../hooks/use-coffee";
 import ErrorMessage from "./error-message";
 import LoadingSpinner from "./loading-spinner";
 import CoffeeForm from "./coffee-form";
+import "./edit-coffee.css";
 
 function EditCoffee(props) {
   const { id } = props;
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [coffeeData, setCoffeeData] = useState(null);
+  const [coffeeData, isLoading, errorMessage] = useCoffee(id);
+
   const [isSaving, setIsSaving] = useState(false);
   const [formMessage, setFormMessage] = useState("");
-
-  useEffect(() => {
-    // Retrival and error
-    async function getCoffee() {
-      setIsLoading(true);
-      try {
-        const coffeeSnapshot = await coffeeCollection.doc(id).get();
-
-        if (!coffeeSnapshot.exists) {
-          throw new Error("No such drink exists!");
-        }
-
-        const data = coffeeSnapshot.data();
-        setCoffeeData(data);
-      } catch (error) {
-        setErrorMessage("Something went wrong. Please try again.");
-        console.error(error);
-      }
-      setIsLoading(false);
-    }
-
-    getCoffee();
-  }, [id]);
 
   const onCoffeeSubmit = async (title, rating, shopName, review, tags) => {
     setIsSaving(true);
