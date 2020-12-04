@@ -19,8 +19,15 @@ This is what is built so far. (important & new parts)
 - [x] firebase collection connected
 - [x] .env.local file running smoothly
 - [x] project is saved in vercel and settings are all updated with the firebase credentials for the environmental variables.
-  > **To be built:** The stylizing of this project could of been better if I knew more about the grid system. However, that was not the main focus of this module. Therefore, only the functionality was the main concentration this time around. (Different approach from Code Sprints A)
+
+## To be built:
+
+- [ ] Account page
+- [ ] One custom hook
+- [ ] userID configuration with firestore
+- [ ] Dark/Light Mode
+- [ ] New input for the amount of espresso shots in the coffee order
 
 ### Other Notes
 
-> This app is a final project for my Code Sprints B class. This course was solely focused on cloud storage.
+> This app is a final project for my Code Sprints C class. This course was solely focused on the server back-end programming. This is a continuation from my previous project in Code Sprints B.
