@@ -1,40 +1,56 @@
-import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import AddCoffeePage from "../pages/add-coffee-page";
 import EditCoffeePage from "../pages/edit-coffee-page";
+import AccountPage from "../pages/account-page";
 import CoffeePage from "../pages/coffee-page";
 import NotFoundPage from "../pages/not-found-page";
+import { auth } from "../data/firebase";
 import Nav from "./nav";
 
-/**
- * The app is responsible for routing and loading the appropriate page within the application.
- */
+function AuthenticatedRoute(props) {
+  const { isAuthenticated, children, ...routeProps } = props;
+  return <Route {...routeProps}>{isAuthenticated ? children : <Redirect to="account" />}</Route>;
+}
+
 function App() {
-	return (
-		<BrowserRouter>
-			<Nav />
+  const [user, setUser] = useState(null);
+  const isAuthenticated = user !== null;
 
-			<Switch>
-				<Route path="/" exact>
-					<CoffeePage />
-				</Route>
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+    });
+    return unsubscribe;
+  }, []);
 
-				<Route path="/add">
-					<AddCoffeePage />
-				</Route>
+  return (
+    <BrowserRouter>
+      <Nav user={user} />
 
-				<Route path="/edit/:id">
-					<EditCoffeePage />
-				</Route>
+      <Switch>
+        <Route path="/account">
+          <AccountPage user={user} />
+        </Route>
 
-				<Route path="*">
-					<NotFoundPage />
-				</Route>
-			</Switch>
-		</BrowserRouter>
-	);
+        <AuthenticatedRoute path="/" exact isAuthenticated={isAuthenticated}>
+          <CoffeePage />
+        </AuthenticatedRoute>
+
+        <AuthenticatedRoute path="/add" isAuthenticated={isAuthenticated}>
+          <AddCoffeePage />
+        </AuthenticatedRoute>
+
+        <AuthenticatedRoute path="/edit/:id" isAuthenticated={isAuthenticated}>
+          <EditCoffeePage />
+        </AuthenticatedRoute>
+
+        <Route path="*">
+          <NotFoundPage />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
 }
 
 export default App;
-
-// loadSampleData();
