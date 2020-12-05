@@ -77,6 +77,8 @@ function CoffeeForm(props) {
         />
         <label className="coffee-form__label">Rating:</label>
         <input
+          min="1"
+          max="5"
           className="coffee-form__input"
           type="number"
           value={rating}
