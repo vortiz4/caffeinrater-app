@@ -59,12 +59,12 @@ function CoffeeForm(props) {
       {message && <p className="coffee-form__message">{message}</p>}
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <fieldset className="coffee-form__controls" disabled={isSaving}>
-        <label className="coffee-form__label">Coffee Drink:</label>
+        <label className="coffee-form__label">Coffee Drink: </label>
         <input
           className="coffee-form__input"
           type="text"
           value={title}
-          placeholder="Please enter the coffee here"
+          placeholder="Please enter coffee drink here"
           onChange={onTitleChange}
         />
         <label className="coffee-form__label">Purchased at: </label>
@@ -89,11 +89,17 @@ function CoffeeForm(props) {
           className="coffee-form__input"
           type="text"
           value={review}
-          placeholder="Please enter a review here"
+          placeholder="Please enter your review here"
           onChange={onReviewChange}
         />
         <label className="coffee-form__label">Tags: </label>
-        <input className="coffee-form__input" type="text" value={tags} onChange={onTagsChange} />
+        <input
+          className="coffee-form__input"
+          type="text"
+          placeholder="Please separate each tag with a comma"
+          value={tags}
+          onChange={onTagsChange}
+        />
         <input
           className="coffee-form__submit"
           type="submit"
