@@ -10,7 +10,7 @@ import Nav from "./nav";
 
 function AuthenticatedRoute(props) {
   const { isAuthenticated, children, ...routeProps } = props;
-  return <Route {...routeProps}>{isAuthenticated ? children : <Redirect to="account" />}</Route>;
+  return <Route {...routeProps}>{isAuthenticated ? children : <Redirect to="/account" />}</Route>;
 }
 
 function App() {
@@ -34,15 +34,15 @@ function App() {
         </Route>
 
         <AuthenticatedRoute path="/" exact isAuthenticated={isAuthenticated}>
-          <CoffeePage />
+          <CoffeePage user={user} />
         </AuthenticatedRoute>
 
         <AuthenticatedRoute path="/add" isAuthenticated={isAuthenticated}>
-          <AddCoffeePage />
+          <AddCoffeePage user={user} />
         </AuthenticatedRoute>
 
         <AuthenticatedRoute path="/edit/:id" isAuthenticated={isAuthenticated}>
-          <EditCoffeePage />
+          <EditCoffeePage user={user} />
         </AuthenticatedRoute>
 
         <Route path="*">

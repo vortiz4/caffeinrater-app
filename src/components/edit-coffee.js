@@ -1,38 +1,20 @@
-import React, { useState } from "react";
-import { coffeeCollection } from "../data/firebase";
+import React from "react";
 import useCoffee from "../hooks/use-coffee";
+import useSaveCoffee from "../hooks/use-save-coffee";
 import ErrorMessage from "./error-message";
 import LoadingSpinner from "./loading-spinner";
 import CoffeeForm from "./coffee-form";
 import "./edit-coffee.css";
 
 function EditCoffee(props) {
-  const { id } = props;
+  const coffeeId = props.id;
+  const userId = props.user.uid;
 
-  const [coffeeData, isLoading, errorMessage] = useCoffee(id);
-
-  const [isSaving, setIsSaving] = useState(false);
-  const [formMessage, setFormMessage] = useState("");
+  const [coffeeData, isLoading, errorMessage] = useCoffee(userId, coffeeId);
+  const [save, isSaving, formMessage] = useSaveCoffee();
 
   const onCoffeeSubmit = async (title, rating, shopName, review, tags) => {
-    setIsSaving(true);
-    setFormMessage("");
-
-    try {
-      await coffeeCollection.doc(id).update({
-        title,
-        rating,
-        shopName,
-        review,
-        tags,
-      });
-      setFormMessage("Saved successfully!");
-    } catch (error) {
-      setFormMessage("Something went wrong editing this drink. Please try again.");
-      console.error(error);
-    }
-
-    setIsSaving(false);
+    save({title, rating, shopName, review, tags}, userId, coffeeId);
   };
 
   return (

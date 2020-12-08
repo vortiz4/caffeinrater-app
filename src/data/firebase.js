@@ -19,6 +19,7 @@ const auth = firebase.auth();
 
 const db = firebase.firestore();
 const coffeeCollection = db.collection("coffee");
+const accountsCollection = db.collection("accounts");
 
 export default db;
-export { coffeeCollection, firebase, provider, auth };
+export { coffeeCollection, accountsCollection, firebase, provider, auth };

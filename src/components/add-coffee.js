@@ -1,32 +1,22 @@
-import React, { useState } from "react";
-import "./add-coffee.css";
+import React from "react";
+import useSaveCoffee from "../hooks/use-save-coffee";
 import CoffeeForm from "./coffee-form";
-import { coffeeCollection, firebase } from "../data/firebase";
+import { firebase } from "../data/firebase";
+import "./add-coffee.css";
 
-function AddCoffee() {
-  const [isSaving, setIsSaving] = useState(false);
-  const [formMessage, setFormMessage] = useState("");
+function AddCoffee(props) {
+  const userId = props.user.uid;
+  const [save, isSaving, formMessage] = useSaveCoffee();
 
   const onCoffeeSumbit = async (title, rating, shopName, review, tags) => {
-    setIsSaving(true);
-    setFormMessage("");
-
-    try {
-      await coffeeCollection.add({
-        title,
-        rating,
-        shopName,
-        review,
-        tags,
-        datePurchased: firebase.firestore.Timestamp.now(),
-      });
-      setFormMessage("Saved successfully!");
-      console.log("Saved!");
-    } catch (error) {
-      setFormMessage("Something went wrong. please try again!");
-      console.error(error);
-    }
-    setIsSaving(false);
+    save({
+      title,
+      rating,
+      shopName,
+      review,
+      tags,
+      datePurchased: firebase.firestore.Timestamp.now(),
+    }, userId);
   };
 
   return (

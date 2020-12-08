@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { coffeeCollection } from "../data/firebase";
+import { accountsCollection } from "../data/firebase";
 
-function useAllCoffee() {
+function useAllCoffee(userId) {
   const [coffee, setCoffee] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -21,7 +21,10 @@ function useAllCoffee() {
       console.error(error);
     };
 
-    const unsubscribe = coffeeCollection.onSnapshot(onNext, onError);
+    const unsubscribe = accountsCollection
+      .doc(userId)
+      .collection("coffee")
+      .onSnapshot(onNext, onError);
 
     return unsubscribe;
   }, []);

@@ -2,13 +2,13 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import AddCoffee from "../components/add-coffee";
 
-function AddCoffeePage() {
+function AddCoffeePage(props) {
 	return (
 		<main>
 			<Helmet>
 				<title>Add</title>
 			</Helmet>
-			<AddCoffee />
+			<AddCoffee {...props} />
 		</main>
 	);
 }

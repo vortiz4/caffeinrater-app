@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { coffeeCollection } from "../data/firebase";
+import { accountsCollection } from "../data/firebase";
 
-function useCoffee(id) {
+function useCoffee(userId, coffeeId) {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [coffeeData, setCoffeeData] = useState(null);
@@ -9,9 +9,14 @@ function useCoffee(id) {
   useEffect(() => {
     async function getCoffee() {
       setIsLoading(true);
-      
+
       try {
-        const coffeeSnapshot = await coffeeCollection.doc(id).get();
+        const coffeeSnapshot = await accountsCollection
+          .doc(userId)
+          .collection("coffee")
+          .doc(coffeeId)
+          .get();
+
 
         if (!coffeeSnapshot.exists) {
           throw new Error("No such drink exists!");
@@ -27,7 +32,7 @@ function useCoffee(id) {
     }
 
     getCoffee();
-  }, [id]);
+  }, [coffeeId]);
 
   return [coffeeData, isLoading, errorMessage];
 }

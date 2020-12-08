@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Delete, Edit } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 import ErrorMessage from "./error-message";
-import { coffeeCollection } from "../data/firebase";
+import { accountsCollection } from "../data/firebase";
 import "./coffee.css";
 
 function Coffee(props) {
-  const { id, data } = props;
+  const { id, data, userId } = props;
   const { title, review, rating, shopName, tags, datePurchased } = data;
 
   const ratingString = "☕".repeat(rating);
@@ -19,7 +19,7 @@ function Coffee(props) {
     setIsDeleting(true);
     setErrorMessage("");
     try {
-      const docRef = coffeeCollection.doc(id);
+      const docRef = accountsCollection.doc(userId).collection("coffee").doc(id);
       await docRef.delete();
     } catch (error) {
       console.error(error);

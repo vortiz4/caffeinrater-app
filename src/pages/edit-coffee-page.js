@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import EditCoffee from "../components/edit-coffee";
 
-function EditCoffeePage() {
+function EditCoffeePage(props) {
 	const { id } = useParams();
 
 	return (
@@ -11,7 +11,7 @@ function EditCoffeePage() {
 			<Helmet>
 				<title>Edit</title>
 			</Helmet>
-			<EditCoffee id={id} />
+			<EditCoffee id={id} {...props} />
 		</main>
 	);
 }
