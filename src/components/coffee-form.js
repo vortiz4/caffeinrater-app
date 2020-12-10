@@ -18,43 +18,27 @@ function CoffeeForm(props) {
   const [tags, setTags] = useState(initialState.tags.join(", "));
   const [errorMessage, setErrorMessage] = useState("");
 
-  // const onAddNote = (event) => {
-  // 	event.preventDefault();
-  // 	if (title === "") {
-  // 		setErrorMsgTitle("Please Enter a Title");
-  // 		return;
-  // 	}
-  // 	if (entry === "") {
-  // 		setErrorMsgEntry("Please Enter a Note");
-  // 		return;
-  // 	}
-  // 	setItems([...items, { title: title, note: entry }]);
-  // 	setTitle("");
-  // 	setEntry("");
-  // };
-
-  // const onTitleChange = (event) => {
-  // 	setTitle(event.target.value);
-  // 	if (title !== "") {
-  // 		setErrorMsgTitle("");
-  // 	}
-  // };
-
-  // const onEntryChange = (event) => {
-  // 	setEntry(event.target.value);
-  // 	if (title !== "") {
-  // 		setErrorMsgEntry("");
-  // 	}
-  // };
+  //* Error Messages */
+  const [errorMsgTitle, setErrorMsgTitle] = useState();
+  const [errorMsgShop, setErrorMsgShop] = useState();
 
   const onTitleChange = (event) => {
     setTitle(event.target.value);
+    if (title !== "") {
+      setErrorMsgTitle("");
+    }
+    setTitle(event.target.value);
   };
+
+  const onShopNameChange = (event) => {
+    if (shopName !== "") {
+      setErrorMsgShop("");
+    }
+    setShopName(event.target.value);
+  };
+
   const onRatingChange = (event) => {
     setRating(event.target.value);
-  };
-  const onShopNameChange = (event) => {
-    setShopName(event.target.value);
   };
 
   const onReviewChange = (event) => {
@@ -67,6 +51,16 @@ function CoffeeForm(props) {
 
   const onCoffeeSumbit = async (event) => {
     event.preventDefault();
+    if (title === "") {
+      setErrorMsgTitle("Please Enter a Title");
+      return;
+    }
+
+    event.preventDefault();
+    if (shopName === "") {
+      setErrorMsgShop("Please Enter the coffee shop's name");
+      return;
+    }
 
     const parts = tags.split(",");
     const partsTrimmed = parts.map((string) => string.trim());
@@ -87,6 +81,8 @@ function CoffeeForm(props) {
       {message && <p className="coffee-form__message">{message}</p>}
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
       <fieldset className="coffee-form__controls" disabled={isSaving}>
+        <div className="error">{errorMsgTitle}</div>
+        <div className="error">{errorMsgShop}</div>
         <label className="coffee-form__label">Coffee Drink: </label>
         <input
           className="coffee-form__input"
@@ -95,7 +91,7 @@ function CoffeeForm(props) {
           placeholder="Please enter coffee drink here"
           onChange={onTitleChange}
         />
-        <label className="coffee-form__label">Purchased at: </label>
+        <label className="coffee-form__label">From: </label>
         <input
           className="coffee-form__input"
           type="text"
@@ -117,7 +113,7 @@ function CoffeeForm(props) {
           className="coffee-form__input"
           type="text"
           value={review}
-          placeholder="Please enter your review here"
+          placeholder="Reviews are optional"
           onChange={onReviewChange}
         />
         <label className="coffee-form__label">Tags*: </label>
