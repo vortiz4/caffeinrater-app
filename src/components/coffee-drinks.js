@@ -11,22 +11,22 @@ function CoffeeDrinks(props) {
   const [coffee, isLoading, errorMessage] = useAllCoffee(userId, "datePurchased");
   const [sort, setSort] = useState();
 
-  const onSortChange = () => {
-    console.log("sort");
-    // sort({ value: "datePurchased" });
-  };
+  // const onSortChange = () => {
+  //   // sort({ value: "datePurchased" });
+  // };
 
   const onSortSubmit = (e) => {
+    console.log(sort);
     setSort(e.target.value);
   };
 
   return (
     <div className="coffee-container">
       <h1 className="main_title">☕CaffeinRater☕</h1>
-      <form onSubmit={onSortSubmit}>
+      <form>
         <label>
           Sort by:
-          <select onChange={onSortChange}>
+          <select onChange={onSortSubmit}>
             <option value="datePurchased">Recent</option>
             <option value="rating">Highest Rating</option>
           </select>

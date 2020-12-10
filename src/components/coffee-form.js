@@ -18,6 +18,35 @@ function CoffeeForm(props) {
   const [tags, setTags] = useState(initialState.tags.join(", "));
   const [errorMessage, setErrorMessage] = useState("");
 
+  // const onAddNote = (event) => {
+  // 	event.preventDefault();
+  // 	if (title === "") {
+  // 		setErrorMsgTitle("Please Enter a Title");
+  // 		return;
+  // 	}
+  // 	if (entry === "") {
+  // 		setErrorMsgEntry("Please Enter a Note");
+  // 		return;
+  // 	}
+  // 	setItems([...items, { title: title, note: entry }]);
+  // 	setTitle("");
+  // 	setEntry("");
+  // };
+
+  // const onTitleChange = (event) => {
+  // 	setTitle(event.target.value);
+  // 	if (title !== "") {
+  // 		setErrorMsgTitle("");
+  // 	}
+  // };
+
+  // const onEntryChange = (event) => {
+  // 	setEntry(event.target.value);
+  // 	if (title !== "") {
+  // 		setErrorMsgEntry("");
+  // 	}
+  // };
+
   const onTitleChange = (event) => {
     setTitle(event.target.value);
   };
@@ -43,7 +72,6 @@ function CoffeeForm(props) {
     const partsTrimmed = parts.map((string) => string.trim());
     const filteredParts = partsTrimmed.filter((string) => {
       if (string === "") {
-        setErrorMessage("There was a problem entering your tags. Please try again.");
         return false;
       } else {
         return true;
@@ -92,14 +120,15 @@ function CoffeeForm(props) {
           placeholder="Please enter your review here"
           onChange={onReviewChange}
         />
-        <label className="coffee-form__label">Tags: </label>
+        <label className="coffee-form__label">Tags*: </label>
         <input
           className="coffee-form__input"
           type="text"
-          placeholder="Please separate each tag with a comma"
+          placeholder="Tags are optional"
           value={tags}
           onChange={onTagsChange}
         />
+        <p className="tag__note">*Please separate each tag with a comma</p>
         <input
           className="coffee-form__submit"
           type="submit"
