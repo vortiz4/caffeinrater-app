@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { accountsCollection } from "../data/firebase";
 
-function useAllCoffee(userId) {
+function useAllCoffee(userId, sortField) {
   const [coffee, setCoffee] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -24,10 +24,11 @@ function useAllCoffee(userId) {
     const unsubscribe = accountsCollection
       .doc(userId)
       .collection("coffee")
+      .orderBy(sortField, "desc")
       .onSnapshot(onNext, onError);
 
     return unsubscribe;
-  }, []);
+  }, [userId, sortField]);
 
   return [coffee, isLoading, errorMessage];
 }

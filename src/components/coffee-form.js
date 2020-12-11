@@ -7,7 +7,7 @@ function CoffeeForm(props) {
 
   if (initialState.title === undefined) initialState.title = "";
   if (initialState.shopName === undefined) initialState.shopName = "";
-  if (initialState.rating === undefined) initialState.rating = 3;
+  if (initialState.rating === undefined) initialState.rating = 1;
   if (initialState.review === undefined) initialState.review = "";
   if (initialState.tags === undefined) initialState.tags = [];
 
@@ -18,7 +18,7 @@ function CoffeeForm(props) {
   const [tags, setTags] = useState(initialState.tags.join(", "));
   const [errorMessage, setErrorMessage] = useState("");
 
-  //* Error Messages */
+  //* Validation */
   const [errorMsgTitle, setErrorMsgTitle] = useState();
   const [errorMsgShop, setErrorMsgShop] = useState();
 
@@ -72,7 +72,9 @@ function CoffeeForm(props) {
       }
     });
 
-    onSubmit(title, rating, shopName, review, filteredParts);
+    const ratingAsNumber = Number.parseInt(rating, 10);
+
+    onSubmit(title, ratingAsNumber, shopName, review, filteredParts);
   };
 
   return (
@@ -99,7 +101,7 @@ function CoffeeForm(props) {
           placeholder="Please enter the coffee shop here"
           onChange={onShopNameChange}
         />
-        <label className="coffee-form__label">Rating:</label>
+        <label className="coffee-form__label">Rating: </label>
         <input
           min="1"
           max="5"

@@ -17,7 +17,6 @@ function useCoffee(userId, coffeeId) {
           .doc(coffeeId)
           .get();
 
-
         if (!coffeeSnapshot.exists) {
           throw new Error("No such drink exists!");
         }
@@ -32,7 +31,7 @@ function useCoffee(userId, coffeeId) {
     }
 
     getCoffee();
-  }, [coffeeId]);
+  }, [userId, coffeeId]);
 
   return [coffeeData, isLoading, errorMessage];
 }
